@@ -46,7 +46,7 @@ public class GraduatedServiceImpl implements GraduatedService {
     @Override
     public Graduated readById(Long id) {
         return graduatedRepository.findGraduatedById(id)
-                .orElseThrow(() -> new NullEntityReferenceException("User by id " + id + " was not found"));
+                .orElseThrow(() -> new NullEntityReferenceException("Graduated by id " + id + " was not found"));
     }
 
     @Override
