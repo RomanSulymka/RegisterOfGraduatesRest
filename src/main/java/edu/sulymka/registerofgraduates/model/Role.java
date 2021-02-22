@@ -1,5 +1,6 @@
 package edu.sulymka.registerofgraduates.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Role implements Serializable {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "role")
     private List<User> users;
 }

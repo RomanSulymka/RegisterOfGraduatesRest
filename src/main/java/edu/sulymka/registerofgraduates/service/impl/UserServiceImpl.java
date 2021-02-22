@@ -4,11 +4,15 @@ import edu.sulymka.registerofgraduates.exceptions.NullEntityReferenceException;
 import edu.sulymka.registerofgraduates.model.User;
 import edu.sulymka.registerofgraduates.repository.UserRepository;
 import edu.sulymka.registerofgraduates.service.UserService;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;

@@ -4,11 +4,15 @@ import edu.sulymka.registerofgraduates.exceptions.NullEntityReferenceException;
 import edu.sulymka.registerofgraduates.model.Role;
 import edu.sulymka.registerofgraduates.repository.RoleRepository;
 import edu.sulymka.registerofgraduates.service.RoleService;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 
