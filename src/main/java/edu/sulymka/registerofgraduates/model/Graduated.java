@@ -22,4 +22,5 @@ public class Graduated implements Serializable {
     private String email;
     private String gender;
     private String imageUrl;
+    private String jobTitle;
 }
