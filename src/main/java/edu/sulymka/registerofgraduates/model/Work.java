@@ -1,19 +1,22 @@
 package edu.sulymka.registerofgraduates.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
-@Getter
-@Setter
 @ToString
+@Data
 @Entity
 @Table(name = "works")
-public class Work {
+public class Work implements Serializable {
     @Id
+    @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String position;
@@ -21,10 +24,8 @@ public class Work {
     private String startWork;
     private String endWork;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "graduates_id")
     private Graduated graduated;
-
-    public Work() {
-    }
 }

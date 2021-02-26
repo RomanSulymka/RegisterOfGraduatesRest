@@ -4,26 +4,28 @@ import edu.sulymka.registerofgraduates.exceptions.NullEntityReferenceException;
 import edu.sulymka.registerofgraduates.model.Work;
 import edu.sulymka.registerofgraduates.repository.WorkRepository;
 import edu.sulymka.registerofgraduates.service.WorkService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class WorkServiceImpl implements WorkService {
-    private WorkRepository workRepository;
+    private final WorkRepository workRepository;
 
+    @Autowired
     public WorkServiceImpl(WorkRepository workRepository) {
         this.workRepository = workRepository;
     }
 
     @Override
     public Work create(Work work) {
-        try {
-            return workRepository.save(work);
-        } catch (IllegalArgumentException e) {
-            throw new NullEntityReferenceException("Work cannot be 'null'");
-        }
+        return workRepository.save(work);
     }
 
     @Override

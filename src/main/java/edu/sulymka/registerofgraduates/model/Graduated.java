@@ -1,9 +1,12 @@
 package edu.sulymka.registerofgraduates.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,6 +14,7 @@ import java.io.Serializable;
 @ToString
 @Data
 @Entity
+@Table
 public class Graduated implements Serializable {
     @Id
     @Column(nullable = false, updatable = false)
@@ -26,4 +30,8 @@ public class Graduated implements Serializable {
     private String graduationYearFromBachelor;
     private String graduationYearFromMaster;
     private String graduationYearFromOrkSpecialist;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "graduated")
+    private List<Work> works;
 }
