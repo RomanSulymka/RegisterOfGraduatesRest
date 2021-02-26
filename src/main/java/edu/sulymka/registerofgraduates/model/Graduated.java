@@ -23,4 +23,7 @@ public class Graduated implements Serializable {
     private String gender;
     private String imageUrl;
     private String jobTitle;
+    private String graduationYearFromBachelor;
+    private String graduationYearFromMaster;
+    private String graduationYearFromOrkSpecialist;
 }
