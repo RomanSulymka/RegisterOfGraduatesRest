@@ -10,10 +10,10 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class RegisterofgraduatesApplication {
+public class RegisterOfGraduatesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RegisterofgraduatesApplication.class, args);
+		SpringApplication.run(RegisterOfGraduatesApplication.class, args);
 	}
 
 	@Bean
