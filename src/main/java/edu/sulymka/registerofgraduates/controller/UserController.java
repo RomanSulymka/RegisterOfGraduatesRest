@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -36,12 +37,12 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+   /* @PostMapping("/create")
     public ResponseEntity<User> addUser(@RequestBody User user){
         user.setRole(roleService.readById(2L));
         User newUser = userService.create(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-    }
+    }*/
 
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User user){
