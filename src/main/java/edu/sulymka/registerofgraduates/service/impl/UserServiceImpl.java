@@ -60,14 +60,5 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
         return users.isEmpty() ? new ArrayList<>() : users;
     }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.getUserByEmail(username);
-        if(user == null){
-            throw new UsernameNotFoundException("User not found!");
-        }
-        return user;
-    }
 }
 
