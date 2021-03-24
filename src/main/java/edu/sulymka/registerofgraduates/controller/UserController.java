@@ -1,15 +1,16 @@
 package edu.sulymka.registerofgraduates.controller;
 
-import edu.sulymka.registerofgraduates.model.Graduated;
 import edu.sulymka.registerofgraduates.model.User;
+import edu.sulymka.registerofgraduates.security.request.SignupRequest;
 import edu.sulymka.registerofgraduates.service.RoleService;
 import edu.sulymka.registerofgraduates.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins="http://localhost:4200")
@@ -18,11 +19,13 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final RoleService roleService;
+    private final PasswordEncoder encoder;
 
     @Autowired
-    public UserController(UserService userService, RoleService roleService) {
+    public UserController(UserService userService, RoleService roleService, PasswordEncoder encoder) {
         this.userService = userService;
         this.roleService = roleService;
+        this.encoder = encoder;
     }
 
     @GetMapping("/all")
@@ -46,6 +49,7 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User user){
+        user.setPassword(encoder.encode(user.getPassword()));
         User updateUser = userService.update(user);
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
     }
