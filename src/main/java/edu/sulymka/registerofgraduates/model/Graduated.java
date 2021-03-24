@@ -1,6 +1,5 @@
 package edu.sulymka.registerofgraduates.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -30,8 +29,10 @@ public class Graduated implements Serializable {
     private String graduationYearFromBachelor;
     private String graduationYearFromMaster;
     private String graduationYearFromOrkSpecialist;
+    private String linkedinUrl;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "graduated")
     private List<Work> works;
+
 }
