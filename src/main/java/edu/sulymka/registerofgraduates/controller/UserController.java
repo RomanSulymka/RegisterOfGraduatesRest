@@ -1,5 +1,6 @@
 package edu.sulymka.registerofgraduates.controller;
 
+import edu.sulymka.registerofgraduates.model.Role;
 import edu.sulymka.registerofgraduates.model.User;
 import edu.sulymka.registerofgraduates.security.request.SignupRequest;
 import edu.sulymka.registerofgraduates.service.RoleService;
@@ -34,10 +35,22 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @GetMapping("/allRoles")
+    public ResponseEntity<List<Role>> getAllRole(){
+        List<Role> roles = roleService.getAll();
+        return new ResponseEntity<>(roles, HttpStatus.OK);
+    }
+
     @GetMapping("/find/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
         User users = userService.readById(id);
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/findRole/{id}")
+    public ResponseEntity<Role> getRoleById(@PathVariable("id") Long id){
+        Role roles = roleService.readById(id);
+        return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 
    /* @PostMapping("/create")
