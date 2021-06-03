@@ -1,21 +1,30 @@
 package edu.sulymka.registerofgraduates.controller;
 
 import edu.sulymka.registerofgraduates.model.Graduated;
+import edu.sulymka.registerofgraduates.model.Work;
+import edu.sulymka.registerofgraduates.repository.GraduatedRepository;
 import edu.sulymka.registerofgraduates.service.GraduatedService;
+import edu.sulymka.registerofgraduates.service.WorkService;
+import javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
-@RequestMapping("/graduates")
+@RequestMapping("/api/graduates")
 public class GraduatedController {
     private final GraduatedService graduatedService;
+    private final WorkService workService;
+    private final GraduatedRepository graduatedRepository;
 
-    public GraduatedController(GraduatedService graduatedService) {
+    public GraduatedController(GraduatedService graduatedService, WorkService workService, GraduatedRepository graduatedRepository) {
         this.graduatedService = graduatedService;
+        this.workService = workService;
+        this.graduatedRepository = graduatedRepository;
     }
 
     @GetMapping("/all")

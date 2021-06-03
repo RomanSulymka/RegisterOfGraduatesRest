@@ -2,7 +2,6 @@ package edu.sulymka.registerofgraduates.controller;
 
 import edu.sulymka.registerofgraduates.model.Role;
 import edu.sulymka.registerofgraduates.model.User;
-import edu.sulymka.registerofgraduates.security.request.SignupRequest;
 import edu.sulymka.registerofgraduates.service.RoleService;
 import edu.sulymka.registerofgraduates.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins="http://localhost:4200")
@@ -53,16 +51,10 @@ public class UserController {
         return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 
-   /* @PostMapping("/create")
-    public ResponseEntity<User> addUser(@RequestBody User user){
-        user.setRole(roleService.readById(2L));
-        User newUser = userService.create(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-    }*/
-
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User user){
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setRoles(user.getRoles());
         User updateUser = userService.update(user);
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
     }
