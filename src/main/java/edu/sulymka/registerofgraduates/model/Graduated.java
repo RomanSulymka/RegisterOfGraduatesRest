@@ -34,6 +34,8 @@ public class Graduated implements Serializable {
     private String graduationYearFromMaster;
     private String graduationYearFromOrkSpecialist;
     private String linkedinUrl;
+    private String facebookUrl;
+    private String instagramUrl;
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date created;
@@ -54,5 +56,4 @@ public class Graduated implements Serializable {
     @JsonManagedReference
     @OneToMany(mappedBy = "graduated")
     private List<Work> works;
-
 }

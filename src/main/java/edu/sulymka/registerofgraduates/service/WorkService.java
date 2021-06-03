@@ -12,4 +12,5 @@ public interface WorkService {
 
     List<Work> getAll();
     List<Work> getByWorkId(Long workId);
+    List<Work> getWorksByCompany();
 }

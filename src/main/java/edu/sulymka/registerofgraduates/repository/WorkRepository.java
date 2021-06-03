@@ -14,4 +14,7 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
 
     @Query(value = "select * from works order by id", nativeQuery = true)
     List<Work> getAll();
+
+    @Query(value = "select company, count(*) as id from works group by company", nativeQuery = true)
+    List<Work> aGetWorksByCompany();
 }

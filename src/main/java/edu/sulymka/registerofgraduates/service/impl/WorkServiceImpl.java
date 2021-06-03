@@ -69,4 +69,10 @@ public class WorkServiceImpl implements WorkService {
         List<Work> works = workRepository.getByWorkId(workId);
         return works.isEmpty() ? new ArrayList<>() : works;
     }
+
+    @Override
+    public List<Work> getWorksByCompany() {
+        List<Work> works = workRepository.aGetWorksByCompany();
+        return works.isEmpty() ? new ArrayList<>() : works;
+    }
 }
